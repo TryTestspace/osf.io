@@ -463,8 +463,6 @@ def test_travis_else(ctx, numprocesses=None):
 def test_travis_api1_and_js(ctx, numprocesses=None):
     flake(ctx)
     jshint(ctx)
-    # TODO: Uncomment when https://github.com/travis-ci/travis-ci/issues/8836 is resolved
-    # karma(ctx)
     test_api1(ctx, numprocesses=numprocesses)
 
 

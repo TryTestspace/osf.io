@@ -5,11 +5,10 @@ language: python
 python:
     - "2.7"
 
-sudo: false
+sudo: required
 
-# TODO: uncomment when https://github.com/travis-ci/travis-ci/issues/8836 is resolved
-# addons:
-#   chrome: stable
+addons:
+  chrome: stable
 
 cache:
   yarn: true
@@ -153,8 +152,12 @@ script:
     - invoke test_travis_$TEST_BUILD -n 4
     
 after_script:
-    - testspace testresults.xml{.};
- 
+    - if [[ "${TEST_BUILD}" = "api1_and_js" ]]; then
+       testspace testresults.xml{.} [js_tests]reports/karma/TESTS-*.xml{.};
+     else
+       testspace testresults.xml{.};
+     fi
+
 before_cache:
   - rm -Rf $HOME/.cache/pip/http
   - rm -f $HOME/.cache/pip/log/debug.log
