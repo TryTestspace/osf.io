@@ -463,6 +463,7 @@ def test_travis_else(ctx, numprocesses=None):
 def test_travis_api1_and_js(ctx, numprocesses=None):
     flake(ctx)
     jshint(ctx)
+    karma(ctx)
     test_api1(ctx, numprocesses=numprocesses)
 
 
